@@ -50,19 +50,19 @@ func (pc Controller) Showid(c *gin.Context) {
 	}
 }
 
-// // Showdan action: GET
-// func (pc Controller) ShowDantaimei(c *gin.Context) {
-// 	dan := c.Params.ByName("dantaimei")
-// 	var s service.Service
-// 	p, err := s.GetByDantaimei(dan)
+// Showusername action: GET
+func (pc Controller) Showname(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+	p, err := s.GetByName(username)
 
-// 	if err != nil {
-// 		c.AbortWithStatus(404)
-// 		fmt.Println(err)
-// 	} else {
-// 		c.JSON(200, p)
-// 	}
-// }
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, p)
+	}
+}
 
 // Update action: PUT
 func (pc Controller) Update(c *gin.Context) {

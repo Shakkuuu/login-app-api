@@ -18,7 +18,7 @@ var (
 func Init() {
 	DBMS := "mysql"
 	USER := "usr"
-	PASS := "4nagawa4saido"
+	PASS := "password"
 	PROTOCOL := "tcp(db:3307)"
 	DBNAME := "user"
 

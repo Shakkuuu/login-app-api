@@ -51,17 +51,17 @@ func (s Service) GetByID(id string) (User, error) {
 	return b, nil
 }
 
-// // GetByDantaimei is get
-// func (s Service) GetByDantaimei(dantai string) ([]User, error) {
-// 	db := db.GetDB()
-// 	var b []User
+// GetByname is get
+func (s Service) GetByName(username string) ([]User, error) {
+	db := db.GetDB()
+	var b []User
 
-// 	if err := db.Where("dantai LIKE ?", "%"+dantai+"%").Find(&b).Error; err != nil {
-// 		return b, err
-// 	}
+	if err := db.Where("name LIKE ?", "%"+username+"%").Find(&b).Error; err != nil {
+		return b, err
+	}
 
-// 	return b, nil
-// }
+	return b, nil
+}
 
 // UpdateByID is update
 func (s Service) UpdateByID(id string, c *gin.Context) (User, error) {

@@ -9,18 +9,18 @@ import (
 // サーバー起動
 func Init() {
 	r := router()
-	r.Run()
+	r.Run(":8081")
 }
 
 func router() *gin.Engine {
 	r := gin.Default()
 
-	u := r.Group("/bihins")
+	u := r.Group("/users")
 	{
 		ctrl := controller.Controller{}
 		u.GET("", ctrl.Index)
 		u.GET("/showid/:id", ctrl.Showid)
-		// u.GET("/showdan/:dantaimei", ctrl.ShowDantaimei)
+		u.GET("/showname/:username", ctrl.Showname)
 		u.POST("", ctrl.Create)
 		u.PUT("/:id", ctrl.Update)
 		u.DELETE("/:id", ctrl.Delete)
