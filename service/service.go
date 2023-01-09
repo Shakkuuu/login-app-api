@@ -52,11 +52,11 @@ func (s Service) GetByID(id string) (User, error) {
 }
 
 // GetByname is get
-func (s Service) GetByName(username string) ([]User, error) {
+func (s Service) GetByName(username string) (User, error) {
 	db := db.GetDB()
-	var b []User
+	var b User
 
-	if err := db.Where("name LIKE ?", "%"+username+"%").Find(&b).Error; err != nil {
+	if err := db.Where("name = ?", username).First(&b).Error; err != nil {
 		return b, err
 	}
 

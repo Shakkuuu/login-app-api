@@ -59,7 +59,9 @@ func (pc Controller) Showname(c *gin.Context) {
 	if err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
+		c.JSON(200, err)
 	} else {
+		fmt.Println("ss")
 		c.JSON(200, p)
 	}
 }
