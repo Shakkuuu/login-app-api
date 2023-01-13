@@ -128,3 +128,18 @@ func (pc Controller) MemoDelete(c *gin.Context) {
 		c.JSON(204, gin.H{"id #" + id: "deleted"})
 	}
 }
+
+func (pc Controller) MemoShowname(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+	p, err := s.MemoGetByName(username)
+
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+		c.JSON(200, err)
+	} else {
+		fmt.Println(p)
+		c.JSON(200, p)
+	}
+}

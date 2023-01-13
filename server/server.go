@@ -30,6 +30,7 @@ func router() *gin.Engine {
 	{
 		ctrl := controller.Controller{}
 		m.GET("", ctrl.MemoIndex)
+		m.GET("/showname/:username", ctrl.MemoShowname)
 		m.POST("", ctrl.MemoCreate)
 		m.DELETE("/:id", ctrl.MemoDelete)
 	}

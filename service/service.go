@@ -130,3 +130,14 @@ func (s Service) MemoDeleteByID(id string) error {
 
 	return nil
 }
+
+func (s Service) MemoGetByName(username string) ([]Memo, error) {
+	db := db.GetDB()
+	var m []Memo
+
+	if err := db.Where("name = ?", username).Find(&m).Error; err != nil {
+		return m, err
+	}
+
+	return m, nil
+}
