@@ -26,5 +26,13 @@ func router() *gin.Engine {
 		u.DELETE("/:id", ctrl.Delete)
 	}
 
+	m := r.Group("/memos")
+	{
+		ctrl := controller.Controller{}
+		m.GET("", ctrl.MemoIndex)
+		m.POST("", ctrl.MemoCreate)
+		m.DELETE("/:id", ctrl.MemoDelete)
+	}
+
 	return r
 }

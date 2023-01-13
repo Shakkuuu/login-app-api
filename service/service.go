@@ -10,6 +10,7 @@ import (
 type Service struct{}
 
 type User entity.User
+type Memo entity.Memo
 
 // GetAll is get all
 func (s Service) GetAll() ([]User, error) {
@@ -87,6 +88,43 @@ func (s Service) DeleteByID(id string) error {
 	var b User
 
 	if err := db.Where("id = ?", id).Delete(&b).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s Service) MemoGetAll() ([]Memo, error) {
+	db := db.GetDB()
+	var m []Memo
+
+	if err := db.Find(&m).Error; err != nil {
+		return nil, err
+	}
+
+	return m, nil
+}
+
+func (s Service) MemoCreateModel(c *gin.Context) (Memo, error) {
+	db := db.GetDB()
+	var m Memo
+
+	if err := c.BindJSON(&m); err != nil {
+		return m, err
+	}
+
+	if err := db.Create(&m).Error; err != nil {
+		return m, err
+	}
+
+	return m, nil
+}
+
+func (s Service) MemoDeleteByID(id string) error {
+	db := db.GetDB()
+	var m Memo
+
+	if err := db.Where("id = ?", id).Delete(&m).Error; err != nil {
 		return err
 	}
 
