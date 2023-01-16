@@ -143,3 +143,27 @@ func (pc Controller) MemoShowname(c *gin.Context) {
 		c.JSON(200, p)
 	}
 }
+
+func (pc Controller) TicketAdd(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+	s.TicketAdd(username)
+}
+
+func (pc Controller) CoinAdd(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+	s.CoinAdd(username)
+}
+
+func (pc Controller) TicketSub(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+	s.TicketSub(username)
+}
+
+func (pc Controller) CoinSub(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+	s.CoinSub(username)
+}
