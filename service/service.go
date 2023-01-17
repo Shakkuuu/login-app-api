@@ -173,12 +173,12 @@ func (s Service) CoinSub(username string) {
 	db := db.GetDB()
 
 	b, _ := s.GetByName(username)
-	if b.Coin < 10 {
-		co := 0
-		db.Model(b).Update("Coin", co)
-		return
-	}
-	co := b.Coin - 10
+	// if b.Coin < 10 {
+	// 	co := 0
+	// 	db.Model(b).Update("Coin", co)
+	// 	return
+	// }
+	co := b.Coin - 1
 
 	db.Model(b).Update("Coin", co)
 }
