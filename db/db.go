@@ -56,5 +56,5 @@ func Close() {
 }
 
 func autoMigration() {
-	db.AutoMigrate(&entity.User{}, &entity.Memo{})
+	db.AutoMigrate(&entity.User{}, &entity.Memo{}, &entity.Coin{})
 }

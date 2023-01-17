@@ -39,5 +39,14 @@ func router() *gin.Engine {
 		m.DELETE("/:id", ctrl.MemoDelete)
 	}
 
+	gc := r.Group("/gamecoin")
+	{
+		ctrl := controller.Controller{}
+		gc.GET("", ctrl.GameCoinAll)
+		gc.GET("/showname/:username", ctrl.GameCoinShowname)
+		gc.POST("", ctrl.GameCoinCreate)
+		gc.PUT("/:username", ctrl.GameCoinUpdate)
+	}
+
 	return r
 }

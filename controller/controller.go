@@ -167,3 +167,55 @@ func (pc Controller) CoinSub(c *gin.Context) {
 	var s service.Service
 	s.CoinSub(username)
 }
+
+func (pc Controller) GameCoinAll(c *gin.Context) {
+	var s service.Service
+	p, err := s.GameCoinGetAll()
+
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, p)
+	}
+}
+
+func (pc Controller) GameCoinCreate(c *gin.Context) {
+	var s service.Service
+	p, err := s.GameCoinCreateModel(c)
+
+	if err != nil {
+		c.AbortWithStatus(400)
+		fmt.Println(err)
+	} else {
+		c.JSON(201, p)
+	}
+}
+
+func (pc Controller) GameCoinShowname(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+	p, err := s.GameCoinGetByName(username)
+
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+		c.JSON(200, err)
+	} else {
+		fmt.Println(p)
+		c.JSON(200, p)
+	}
+}
+
+func (pc Controller) GameCoinUpdate(c *gin.Context) {
+	id := c.Params.ByName("username")
+	var s service.Service
+	p, err := s.GameCoinUpdateByName(id, c)
+
+	if err != nil {
+		c.AbortWithStatus(400)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, p)
+	}
+}

@@ -11,6 +11,7 @@ type Service struct{}
 
 type User entity.User
 type Memo entity.Memo
+type Coin entity.Coin
 
 // GetAll is get all
 func (s Service) GetAll() ([]User, error) {
@@ -173,12 +174,61 @@ func (s Service) CoinSub(username string) {
 	db := db.GetDB()
 
 	b, _ := s.GetByName(username)
-	// if b.Coin < 10 {
-	// 	co := 0
-	// 	db.Model(b).Update("Coin", co)
-	// 	return
-	// }
 	co := b.Coin - 1
 
 	db.Model(b).Update("Coin", co)
+}
+
+func (s Service) GameCoinGetAll() ([]Coin, error) {
+	db := db.GetDB()
+	var co []Coin
+
+	if err := db.Find(&co).Error; err != nil {
+		return nil, err
+	}
+
+	return co, nil
+}
+
+func (s Service) GameCoinCreateModel(c *gin.Context) (Coin, error) {
+	db := db.GetDB()
+	var co Coin
+
+	if err := c.BindJSON(&co); err != nil {
+		return co, err
+	}
+
+	if err := db.Create(&co).Error; err != nil {
+		return co, err
+	}
+
+	return co, nil
+}
+
+func (s Service) GameCoinGetByName(username string) (Coin, error) {
+	db := db.GetDB()
+	var co Coin
+
+	if err := db.Where("name = ?", username).Find(&co).Error; err != nil {
+		return co, err
+	}
+
+	return co, nil
+}
+
+func (s Service) GameCoinUpdateByName(username string, c *gin.Context) (Coin, error) {
+	db := db.GetDB()
+	var co Coin
+
+	if err := db.Where("name = ?", username).First(&co).Error; err != nil {
+		return co, err
+	}
+
+	if err := c.BindJSON(&co); err != nil {
+		return co, err
+	}
+
+	db.Save(&c)
+
+	return co, nil
 }
