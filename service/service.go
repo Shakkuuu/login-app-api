@@ -228,7 +228,7 @@ func (s Service) GameCoinUpdateByName(username string, c *gin.Context) (Coin, er
 		return co, err
 	}
 
-	db.Save(&c)
+	db.Save(&co)
 
 	return co, nil
 }
