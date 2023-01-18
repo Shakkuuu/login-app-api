@@ -150,11 +150,11 @@ func (pc Controller) TicketAdd(c *gin.Context) {
 	s.TicketAdd(username)
 }
 
-func (pc Controller) CoinAdd(c *gin.Context) {
-	username := c.Params.ByName("username")
-	var s service.Service
-	s.CoinAdd(username)
-}
+// func (pc Controller) CoinAdd(c *gin.Context) {
+// 	username := c.Params.ByName("username")
+// 	var s service.Service
+// 	s.CoinAdd(username)
+// }
 
 func (pc Controller) TicketSub(c *gin.Context) {
 	username := c.Params.ByName("username")
@@ -162,11 +162,11 @@ func (pc Controller) TicketSub(c *gin.Context) {
 	s.TicketSub(username)
 }
 
-func (pc Controller) CoinSub(c *gin.Context) {
-	username := c.Params.ByName("username")
-	var s service.Service
-	s.CoinSub(username)
-}
+// func (pc Controller) CoinSub(c *gin.Context) {
+// 	username := c.Params.ByName("username")
+// 	var s service.Service
+// 	s.CoinSub(username)
+// }
 
 func (pc Controller) GameCoinAll(c *gin.Context) {
 	var s service.Service

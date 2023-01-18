@@ -152,14 +152,14 @@ func (s Service) TicketAdd(username string) {
 	db.Model(b).Update("Ticket", ti)
 }
 
-func (s Service) CoinAdd(username string) {
-	db := db.GetDB()
+// func (s Service) CoinAdd(username string) {
+// 	db := db.GetDB()
 
-	b, _ := s.GetByName(username)
-	co := b.Coin + 1
+// 	b, _ := s.GetByName(username)
+// 	co := b.Coin + 1
 
-	db.Model(b).Update("Coin", co)
-}
+// 	db.Model(b).Update("Coin", co)
+// }
 
 func (s Service) TicketSub(username string) {
 	db := db.GetDB()
@@ -170,14 +170,14 @@ func (s Service) TicketSub(username string) {
 	db.Model(b).Update("Ticket", ti)
 }
 
-func (s Service) CoinSub(username string) {
-	db := db.GetDB()
+// func (s Service) CoinSub(username string) {
+// 	db := db.GetDB()
 
-	b, _ := s.GetByName(username)
-	co := b.Coin - 1
+// 	b, _ := s.GetByName(username)
+// 	co := b.Coin - 1
 
-	db.Model(b).Update("Coin", co)
-}
+// 	db.Model(b).Update("Coin", co)
+// }
 
 func (s Service) GameCoinGetAll() ([]Coin, error) {
 	db := db.GetDB()
