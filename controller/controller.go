@@ -118,14 +118,14 @@ func (pc Controller) MemoCreate(c *gin.Context) {
 }
 
 func (pc Controller) MemoDelete(c *gin.Context) {
-	id := c.Params.ByName("id")
+	username := c.Params.ByName("username")
 	var s service.Service
 
-	if err := s.MemoDeleteByID(id); err != nil {
+	if err := s.MemoDeleteByID(username); err != nil {
 		c.AbortWithStatus(403)
 		fmt.Println(err)
 	} else {
-		c.JSON(204, gin.H{"id #" + id: "deleted"})
+		c.JSON(204, gin.H{"id #" + username: "deleted"})
 	}
 }
 
@@ -208,14 +208,26 @@ func (pc Controller) GameCoinShowname(c *gin.Context) {
 }
 
 func (pc Controller) GameCoinUpdate(c *gin.Context) {
-	id := c.Params.ByName("username")
+	username := c.Params.ByName("username")
 	var s service.Service
-	p, err := s.GameCoinUpdateByName(id, c)
+	p, err := s.GameCoinUpdateByName(username, c)
 
 	if err != nil {
 		c.AbortWithStatus(400)
 		fmt.Println(err)
 	} else {
 		c.JSON(200, p)
+	}
+}
+
+func (pc Controller) GameCoinDelete(c *gin.Context) {
+	username := c.Params.ByName("username")
+	var s service.Service
+
+	if err := s.GameCoinDeleteByName(username); err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+	} else {
+		c.JSON(204, gin.H{"id #" + username: "deleted"})
 	}
 }

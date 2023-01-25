@@ -36,7 +36,7 @@ func router() *gin.Engine {
 		m.GET("", ctrl.MemoIndex)
 		m.GET("/showname/:username", ctrl.MemoShowname)
 		m.POST("", ctrl.MemoCreate)
-		m.DELETE("/:id", ctrl.MemoDelete)
+		m.DELETE("/:username", ctrl.MemoDelete)
 	}
 
 	gc := r.Group("/gamecoin")
@@ -46,6 +46,7 @@ func router() *gin.Engine {
 		gc.GET("/showname/:username", ctrl.GameCoinShowname)
 		gc.POST("", ctrl.GameCoinCreate)
 		gc.PUT("/:username", ctrl.GameCoinUpdate)
+		gc.DELETE("/:username", ctrl.GameCoinDelete)
 	}
 
 	return r

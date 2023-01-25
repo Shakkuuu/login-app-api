@@ -121,11 +121,11 @@ func (s Service) MemoCreateModel(c *gin.Context) (Memo, error) {
 	return m, nil
 }
 
-func (s Service) MemoDeleteByID(id string) error {
+func (s Service) MemoDeleteByID(username string) error {
 	db := db.GetDB()
 	var m Memo
 
-	if err := db.Where("id = ?", id).Delete(&m).Error; err != nil {
+	if err := db.Where("name = ?", username).Delete(&m).Error; err != nil {
 		return err
 	}
 
@@ -231,4 +231,15 @@ func (s Service) GameCoinUpdateByName(username string, c *gin.Context) (Coin, er
 	db.Save(&co)
 
 	return co, nil
+}
+
+func (s Service) GameCoinDeleteByName(username string) error {
+	db := db.GetDB()
+	var co Coin
+
+	if err := db.Where("name = ?", username).Delete(&co).Error; err != nil {
+		return err
+	}
+
+	return nil
 }
