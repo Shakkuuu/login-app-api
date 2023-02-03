@@ -85,7 +85,9 @@ DELETE
 
 * macbook air M1
 * Visual Studio Code
-* go: version go1.19.5 darwin/arm64
+* go 1.19.5 darwin/arm64
+* docker v3
+* mysql v8.0
 * 使用パッケージ  
 標準  
 ``` fmt, time ```  
